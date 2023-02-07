@@ -92,7 +92,7 @@ def new_game(update: Update, context: CallbackContext):
         game.mode = DEFAULT_GAMEMODE
         send_async(context.bot, chat_id,
                    text=_("Created a new game! Join the game with /join "
-                          "and start the game with /start"))
+                          "and start the game with /ustart"))
 
 
 @user_locale
@@ -122,7 +122,7 @@ def kill_game(update: Update, context: CallbackContext):
         except NoGameInChatError:
             send_async(context.bot, chat.id,
                        text=_("The game is not started yet. "
-                              "Join the game with /join and start the game with /start"),
+                              "Join the game with /join and start the game with /ustart"),
                        reply_to_message_id=update.message.message_id)
 
     else:
@@ -155,7 +155,7 @@ def join_game(update: Update, context: CallbackContext):
     except AlreadyJoinedError:
         send_async(context.bot, chat.id,
                    text=_("You already joined the game. Start the game "
-                          "with /start"),
+                          "with /ustart"),
                    reply_to_message_id=update.message.message_id)
 
     except DeckEmptyError:
@@ -238,7 +238,7 @@ def kick_player(update: Update, context: CallbackContext):
     if not game.started:
         send_async(context.bot, chat.id,
                    text=_("The game is not started yet. "
-                          "Join the game with /join and start the game with /start"),
+                          "Join the game with /join and start the game with /ustart"),
                    reply_to_message_id=update.message.message_id)
         return
 
@@ -348,7 +348,7 @@ def status_update(update: Update, context: CallbackContext):
 @game_locales
 @user_locale
 def start_game(update: Update, context: CallbackContext):
-    """Handler for the /start command"""
+    """Handler for the /ustart command"""
 
     if update.message.chat.type != 'private':
         chat = update.message.chat
@@ -536,7 +536,7 @@ def disable_translations(update: Update, context: CallbackContext):
 @game_locales
 @user_locale
 def skip_player(update: Update, context: CallbackContext):
-    """Handler for the /skip command"""
+    """Handler for the /uskip command"""
     chat = update.message.chat
     user = update.message.from_user
 
@@ -720,19 +720,19 @@ def reset_waiting_time(bot, player):
 dispatcher.add_handler(InlineQueryHandler(reply_to_query))
 dispatcher.add_handler(ChosenInlineResultHandler(process_result, pass_job_queue=True))
 dispatcher.add_handler(CallbackQueryHandler(select_game))
-dispatcher.add_handler(CommandHandler('start', start_game, pass_args=True, pass_job_queue=True))
+dispatcher.add_handler(CommandHandler('ustart', start_game, pass_args=True, pass_job_queue=True))
 dispatcher.add_handler(CommandHandler('new', new_game))
 dispatcher.add_handler(CommandHandler('kill', kill_game))
 dispatcher.add_handler(CommandHandler('join', join_game))
 dispatcher.add_handler(CommandHandler('leave', leave_game))
-dispatcher.add_handler(CommandHandler('kick', kick_player))
+dispatcher.add_handler(CommandHandler('ukick', kick_player))
 dispatcher.add_handler(CommandHandler('open', open_game))
 dispatcher.add_handler(CommandHandler('close', close_game))
 dispatcher.add_handler(CommandHandler('enable_translations',
                                       enable_translations))
 dispatcher.add_handler(CommandHandler('disable_translations',
                                       disable_translations))
-dispatcher.add_handler(CommandHandler('skip', skip_player))
+dispatcher.add_handler(CommandHandler('uskip', skip_player))
 dispatcher.add_handler(CommandHandler('notify_me', notify_me))
 simple_commands.register()
 settings.register()

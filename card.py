@@ -48,7 +48,7 @@ EIGHT = '8'
 NINE = '9'
 DRAW_TWO = 'draw'
 REVERSE = 'reverse'
-SKIP = 'skip'
+SKIP = 'uskip'
 
 VALUES = (ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, DRAW_TWO,
           REVERSE, SKIP)

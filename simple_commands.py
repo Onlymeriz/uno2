@@ -27,15 +27,15 @@ from internationalization import _, user_locale
 
 @user_locale
 def help_handler(update: Update, context: CallbackContext):
-    """Handler for the /help command"""
+    """Handler for the /uhelp command"""
     help_text = _("Follow these steps:\n\n"
       "1. Add this bot to a group\n"
       "2. In the group, start a new game with /new or join an already"
       " running game with /join\n"
       "3. After at least two players have joined, start the game with"
-      " /start\n"
-      "4. Type <code>@unobot</code> into your chat box and hit "
-      "<b>space</b>, or click the <code>via @unobot</code> text "
+      " /ustart\n"
+      "4. Type <code>@KynanUserbot</code> into your chat box and hit "
+      "<b>space</b>, or click the <code>via @KynanUserbot</code> text "
       "next to messages. You will see your cards (some greyed out), "
       "any extra options like drawing, and a <b>?</b> to see the "
       "current game state. The <b>greyed out cards</b> are those you "
@@ -45,12 +45,12 @@ def help_handler(update: Update, context: CallbackContext):
       "use /leave. If a player takes more than 90 seconds to play, "
       "you can use /skip to skip that player. Use /notify_me to "
       "receive a private message when a new game is started.\n\n"
-      "<b>Language</b> and other settings: /settings\n"
+      "<b>Language</b> and other settings: /usettings\n"
       "Other commands (only game creator):\n"
       "/close - Close lobby\n"
       "/open - Open lobby\n"
       "/kill - Terminate the game\n"
-      "/kick - Select a player to kick "
+      "/ukick - Select a player to kick "
       "by replying to him or her\n"
       "/enable_translations - Translate relevant texts into all "
       "languages spoken in a game\n"
@@ -59,9 +59,9 @@ def help_handler(update: Update, context: CallbackContext):
       "Press the <code>Current game: ...</code> button and select the "
       "group you want to play a card in.\n"
       "If you enjoy this bot, "
-      "<a href=\"https://telegram.me/storebot?start=mau_mau_bot\">"
+      "<a href=\"https://telegram.me/KynanUserbot?start=KynanUserbot\">"
       "rate me</a>, join the "
-      "<a href=\"https://telegram.me/unobotupdates\">update channel</a>"
+      "<a href=\"https://telegram.me/kontenfilm\">update channel</a>"
       " and buy an UNO card game.")
 
     send_async(context.bot, update.message.chat_id, text=help_text,
@@ -145,8 +145,8 @@ def stats(update: Update, context: CallbackContext):
 
 
 def register():
-    dispatcher.add_handler(CommandHandler('help', help_handler))
+    dispatcher.add_handler(CommandHandler('uhelp', help_handler))
     dispatcher.add_handler(CommandHandler('source', source))
     dispatcher.add_handler(CommandHandler('news', news))
-    dispatcher.add_handler(CommandHandler('stats', stats))
+    dispatcher.add_handler(CommandHandler('ustats', stats))
     dispatcher.add_handler(CommandHandler('modes', modes))
